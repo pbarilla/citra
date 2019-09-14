@@ -14,6 +14,9 @@
 #include "input_common/main.h"
 #include "input_common/udp/client.h"
 #include "network/network.h"
+#ifdef ARCHITECTURE_x86_64
+#include "common/x64/cpu_detect.h"
+#endif
 
 Config::Config() {
     // TODO: Don't hardcode the path; let the frontend decide where to put the config files.
@@ -247,6 +250,16 @@ void Config::ReadValues() {
     Settings::values.init_clock = static_cast<Settings::InitClock>(
         ReadSetting("init_clock", static_cast<u32>(Settings::InitClock::SystemTime)).toInt());
     Settings::values.init_time = ReadSetting("init_time", 946681277ULL).toULongLong();
+    Settings::values.host_cpu = Common::GetCPUCaps().cpu_string;
+#ifdef __APPLE__
+    Settings::values.host_os = "Apple";
+#elif defined(_WIN32)
+    Settings::values.host_os = "Windows";
+#elif defined(__linux__) || defined(linux) || defined(__linux)
+    Settings::values.host_os = "Linux";
+#else
+    Settings::values.host_os = "Unknown";
+#endif
     qt_config->endGroup();
 
     qt_config->beginGroup("Miscellaneous");
