@@ -33,6 +33,4 @@ private:
 
     std::unique_ptr<QSettings> qt_config;
     std::string qt_config_loc;
-
-    std::string GetHostOS();
 };
