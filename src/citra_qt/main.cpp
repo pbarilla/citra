@@ -173,7 +173,9 @@ GMainWindow::GMainWindow() : config(new Config()), emu_thread(nullptr) {
 
     LOG_INFO(Frontend, "Citra Version: {} | {}-{}", Common::g_build_fullname, Common::g_scm_branch,
              Common::g_scm_desc);
+    #ifdef ARCHITECTURE_x86_64
     LOG_INFO(Host, "Host CPU: {}", Common::GetCPUCaps().cpu_string);
+    #endif
     LOG_INFO(Host, "Host OS: {}", QSysInfo::prettyProductName().toStdString());
     UpdateWindowTitle();
 
