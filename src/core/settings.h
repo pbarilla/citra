@@ -197,10 +197,6 @@ struct Values {
     std::string web_api_url;
     std::string citra_username;
     std::string citra_token;
-
-    // Host Details (this is for logging host information)
-    std::string host_cpu;
-    std::string host_os;
 } extern values;
 
 // a special value for Values::region_value indicating that citra will automatically select a region

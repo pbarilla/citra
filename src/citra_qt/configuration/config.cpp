@@ -7,7 +7,6 @@
 #include <unordered_map>
 #include <QKeySequence>
 #include <QSettings>
-#include <QSysInfo>
 #include "citra_qt/configuration/config.h"
 #include "citra_qt/uisettings.h"
 #include "common/file_util.h"
@@ -15,9 +14,6 @@
 #include "input_common/main.h"
 #include "input_common/udp/client.h"
 #include "network/network.h"
-#ifdef ARCHITECTURE_x86_64
-#include "common/x64/cpu_detect.h"
-#endif
 
 Config::Config() {
     // TODO: Don't hardcode the path; let the frontend decide where to put the config files.
@@ -251,8 +247,6 @@ void Config::ReadValues() {
     Settings::values.init_clock = static_cast<Settings::InitClock>(
         ReadSetting("init_clock", static_cast<u32>(Settings::InitClock::SystemTime)).toInt());
     Settings::values.init_time = ReadSetting("init_time", 946681277ULL).toULongLong();
-    Settings::values.host_cpu = Common::GetCPUCaps().cpu_string;
-    Settings::values.host_os = QSysInfo::prettyProductName().toStdString();
     qt_config->endGroup();
 
     qt_config->beginGroup("Miscellaneous");

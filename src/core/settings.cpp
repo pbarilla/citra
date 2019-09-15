@@ -109,8 +109,6 @@ void LogSettings() {
     LogSetting("System_RegionValue", Settings::values.region_value);
     LogSetting("Debugging_UseGdbstub", Settings::values.use_gdbstub);
     LogSetting("Debugging_GdbstubPort", Settings::values.gdbstub_port);
-    LogSetting("Host_CPU", Settings::values.host_cpu);
-    LogSetting("Host_OS", Settings::values.host_os);
 }
 
 void LoadProfile(int index) {
