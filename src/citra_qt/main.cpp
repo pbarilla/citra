@@ -11,10 +11,10 @@
 #include <QFileDialog>
 #include <QFutureWatcher>
 #include <QMessageBox>
+#include <QSysInfo>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QtGui>
 #include <QtWidgets>
-#include <QSysInfo>
 #include <fmt/format.h>
 #ifdef __APPLE__
 #include <unistd.h> // for chdir
@@ -173,9 +173,9 @@ GMainWindow::GMainWindow() : config(new Config()), emu_thread(nullptr) {
 
     LOG_INFO(Frontend, "Citra Version: {} | {}-{}", Common::g_build_fullname, Common::g_scm_branch,
              Common::g_scm_desc);
-    #ifdef ARCHITECTURE_x86_64
+#ifdef ARCHITECTURE_x86_64
     LOG_INFO(Host, "Host CPU: {}", Common::GetCPUCaps().cpu_string);
-    #endif
+#endif
     LOG_INFO(Host, "Host OS: {}", QSysInfo::prettyProductName().toStdString());
     UpdateWindowTitle();
 
